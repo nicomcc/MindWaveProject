@@ -1,11 +1,39 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DisplayData : MonoBehaviour
 {
+
+	public class AttentionSignal
+	{
+		public int attention;
+		public float time;
+
+		public AttentionSignal()
+		{
+			attention = 0;
+			time = 0;
+		}	
+
+		public AttentionSignal(int att, int tim)
+		{
+			attention = att;
+			time = tim;
+		}	
+
+
+		public void SetAttentionData(int att, int tim)
+		{
+			attention = att;
+			time = tim;
+		}
+
+	}
+
 	public Texture2D[] signalIcons;
 
-
+	public List<AttentionSignal> signalRecord = new List<AttentionSignal> ();
 	
 	private int indexSignalIcons = 1;
 	
@@ -13,8 +41,10 @@ public class DisplayData : MonoBehaviour
 
     private int poorSignal1;
     private int attention1;
+	private int previousAttention = 0;
     private int meditation1;
-	
+	private float previousTime = 0;
+
 	private float delta;
 
     void Start()
@@ -80,6 +110,31 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("Attention1:" + attention1);
         GUILayout.Label("Meditation1:" + meditation1);
 		GUILayout.Label("Delta:" + delta);
+
+
+		//if (attention1 != previousAttention)
+		if(Time.time - previousTime > 1)
+		{
+			previousTime = Time.time;
+
+			AttentionSignal sig = new AttentionSignal (attention1, (int)Time.time);
+			signalRecord.Add (sig);
+			previousAttention = attention1;
+
+		
+
+
+			if (Time.time > 5) 
+			{
+				foreach (AttentionSignal aT in signalRecord)
+				{
+					//Debug.Log (aT.attention);
+					Debug.Log (aT.time);
+				}
+			}
+
+		}
+
 
     }
 }
