@@ -129,7 +129,7 @@ public class DisplayData : MonoBehaviour
 				foreach (AttentionSignal aT in signalRecord)
 				{
 					//Debug.Log (aT.attention);
-					Debug.Log (aT.time);
+					//Debug.Log (aT.time);
 				}
 			}
 
