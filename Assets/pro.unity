@@ -225,6 +225,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5953fd7059c0524eb3c3474aeb438ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  brainItensity: 4
+  gravityForce: 4
 --- !u!1 &672377119
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,6 +330,9 @@ MonoBehaviour:
   attention1: 0
   previousTime: 0
   currentTime: 0
+  dataAcquisitionTime: 1
+  startReading: 0
+  count: 0
 --- !u!1 &699980597
 GameObject:
   m_ObjectHideFlags: 0
