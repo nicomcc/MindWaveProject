@@ -20,6 +20,9 @@ public class window_graph : MonoBehaviour {
 
 	private int previousCount = 0;
 
+	private List<GameObject> circleList = new List<GameObject>();
+	private List<GameObject> connectionList = new List<GameObject>();
+
 	private void Awake()
 	{
 		graphContainer = transform.Find ("graphContainer").GetComponent<RectTransform> ();
@@ -66,7 +69,7 @@ public class window_graph : MonoBehaviour {
 			{
 				CreateDotConnection (lastCircleGameObject.GetComponent<RectTransform> ().anchoredPosition, circleGameObject.GetComponent<RectTransform> ().anchoredPosition);
 			}
-
+			circleList.Add (circleGameObject);
 			lastCircleGameObject = circleGameObject;
 		}
 	}
@@ -84,6 +87,7 @@ public class window_graph : MonoBehaviour {
 		rectTransform.sizeDelta = new Vector2 (distance, 1f);
 		rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
 		rectTransform.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
+		connectionList.Add (gameObject);
 	}
 
 
@@ -93,6 +97,20 @@ public class window_graph : MonoBehaviour {
 		if (data.count != previousCount) 
 		{
 			previousCount = data.count;
+
+			foreach (GameObject circle in circleList)
+				Destroy (circle);
+
+			//circleList = null;
+			//circleList.Clear();
+
+			foreach (GameObject connection in connectionList)
+			{
+				Destroy (connection);
+
+			}
+
+			Debug.Log (circleList.Count);
 
 			list = data.signalRecord;
 			ShowGraph (list);
