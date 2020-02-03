@@ -1,37 +1,12 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using AttentionSignalHeader;
 
 public class DisplayData : MonoBehaviour
 {
-
-	public class AttentionSignal
-	{
-		public int attention;
-		public float time;
-
-		public AttentionSignal()
-		{
-			attention = 0;
-			time = 0;
-		}	
-
-		public AttentionSignal(int att, int tim)
-		{
-			attention = att;
-			time = tim;
-		}	
-
-
-		public void SetAttentionData(int att, int tim)
-		{
-			attention = att;
-			time = tim;
-		}
-
-	}
-
 	public Texture2D[] signalIcons;
+
 
 	public List<AttentionSignal> signalRecord = new List<AttentionSignal> ();
 	
@@ -40,12 +15,22 @@ public class DisplayData : MonoBehaviour
     TGCConnectionController controller;
 
     private int poorSignal1;
-    private int attention1;
+    public int attention1;
 	private int previousAttention = 0;
     private int meditation1;
-	private float previousTime = 0;
+
+	[HideInInspector] public float previousTime = 0;
+
+	[HideInInspector] public float currentTime = 0;
+    public float dataAcquisitionTime = 1f;
 
 	private float delta;
+
+	public bool startReading = false;
+	private int startTime;
+	private bool connectStart = false;
+
+	public int count = 0;
 
     void Start()
     {
@@ -85,6 +70,7 @@ public class DisplayData : MonoBehaviour
 	}
 
 
+
     void OnGUI()
     {
 		GUILayout.BeginHorizontal();
@@ -93,11 +79,14 @@ public class DisplayData : MonoBehaviour
         if (GUILayout.Button("Connect"))
         {
             controller.Connect();
+			connectStart = true;
+
         }
         if (GUILayout.Button("DisConnect"))
         {
             controller.Disconnect();
 			indexSignalIcons = 1;
+			connectStart = false;
         }
 		
 		GUILayout.Space(Screen.width-250);
@@ -111,27 +100,36 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("Meditation1:" + meditation1);
 		GUILayout.Label("Delta:" + delta);
 
-
-		//if (attention1 != previousAttention)
-		if(Time.time - previousTime > 1)
+		if (poorSignal1 == 0 && connectStart)
 		{
-			previousTime = Time.time;
+			startReading = true;
+			startTime = (int)Time.time;
+			connectStart = false;
+		}
+			
 
-			AttentionSignal sig = new AttentionSignal (attention1, (int)Time.time);
-			signalRecord.Add (sig);
-			previousAttention = attention1;
+		currentTime = Time.time - startTime;
 
-		
-
-
-			if (Time.time > 5) 
+		if(poorSignal1 <= 25 && startReading)
+		{
+			if ((currentTime) - previousTime > dataAcquisitionTime) 
 			{
-				foreach (AttentionSignal aT in signalRecord)
-				{
-					//Debug.Log (aT.attention);
-					//Debug.Log (aT.time);
-				}
-			}
+				previousTime = currentTime;
+
+				AttentionSignal sig = new AttentionSignal (attention1, (int)currentTime);
+				signalRecord.Add (sig);
+				previousAttention = attention1;
+				count++;
+		}
+
+//			if (Time.time > 5) 
+//			{
+//				foreach (AttentionSignal aT in signalRecord)
+//				{
+//					//Debug.Log (aT.attention);
+//					//Debug.Log (aT.time);
+//				}
+//			}
 
 		}
 

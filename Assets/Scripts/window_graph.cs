@@ -3,21 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using CodeMonkey.Utils;
+using AttentionSignalHeader;
 
 public class window_graph : MonoBehaviour {
 
+	public GameObject signalReadObject;
+	public DisplayData data;
 
 	private RectTransform graphContainer;
 
+	private List<AttentionSignal> list;
+
 	[SerializeField]private Sprite circleSprite;
+
+	private float previousTime = 0;
+
+	private int previousCount = 0;
 
 	private void Awake()
 	{
 		graphContainer = transform.Find ("graphContainer").GetComponent<RectTransform> ();
 
 		List<int> valueList = new List<int> () { 10, 30, 50, 30, 60, 70, 40, 100, 33, 55, 44, 22, 33, 44, 22, 88, 32, 44, 76};
-		ShowGraph (valueList);
+
+
+		data = signalReadObject.GetComponent<DisplayData>();
+		list = data.signalRecord;
+		//ShowGraph (list);
+		previousTime = data.currentTime;
 	}
+
 
 	private GameObject CreateCircle(Vector2 anchoredPosition)
 	{
@@ -32,8 +47,9 @@ public class window_graph : MonoBehaviour {
 		return gameObject;
 	}
 
-	private void ShowGraph(List<int> valueList)
+	private void ShowGraph(List<AttentionSignal> valueList)
 	{
+		
 		float graphHeight = graphContainer.sizeDelta.y; 
 		float graphWidth = graphContainer.sizeDelta.x; 
 
@@ -44,7 +60,7 @@ public class window_graph : MonoBehaviour {
 		for (int i = 0; i < valueList.Count; i++)
 		{
 			float xPosition = (i / xSize) * graphWidth;
-			float yPosition = (valueList [i] / yMaximum) * graphHeight;
+			float yPosition = (list[i].attention / yMaximum) * graphHeight;
 			GameObject circleGameObject = CreateCircle (new Vector2 (xPosition, yPosition));
 			if (lastCircleGameObject != null)
 			{
@@ -68,6 +84,20 @@ public class window_graph : MonoBehaviour {
 		rectTransform.sizeDelta = new Vector2 (distance, 1f);
 		rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
 		rectTransform.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
+	}
+
+
+
+	void Update () {
+
+		if (data.count != previousCount) 
+		{
+			previousCount = data.count;
+
+			list = data.signalRecord;
+			ShowGraph (list);
+		}
+			
 	}
 
 }
