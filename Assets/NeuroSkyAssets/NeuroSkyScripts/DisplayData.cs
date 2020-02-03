@@ -88,6 +88,11 @@ public class DisplayData : MonoBehaviour
 			indexSignalIcons = 1;
 			connectStart = false;
         }
+		if (GUILayout.Button("Data Acquisition"))
+		{			
+			startReading = true;
+			startTime = (int)Time.time;
+		}
 		
 		GUILayout.Space(Screen.width-250);
 		GUILayout.Label(signalIcons[indexSignalIcons]);
@@ -100,18 +105,20 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("Meditation1:" + meditation1);
 		GUILayout.Label("Delta:" + delta);
 
-		if (poorSignal1 == 0 && connectStart)
-		{
-			startReading = true;
-			startTime = (int)Time.time;
-			connectStart = false;
-		}
+//		if (poorSignal1 == 0 && connectStart)
+//		{
+//			startReading = true;
+//			startTime = (int)Time.time;
+//			connectStart = false;
+//		}
 			
 
-		currentTime = Time.time - startTime;
+
 
 		if(poorSignal1 <= 25 && startReading)
 		{
+			currentTime = Time.time - startTime;
+
 			if ((currentTime) - previousTime > dataAcquisitionTime) 
 			{
 				previousTime = currentTime;

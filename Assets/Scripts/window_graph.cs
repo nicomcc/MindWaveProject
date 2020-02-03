@@ -98,19 +98,16 @@ public class window_graph : MonoBehaviour {
 		{
 			previousCount = data.count;
 
-			foreach (GameObject circle in circleList)
-				Destroy (circle);
 
-			//circleList = null;
-			//circleList.Clear();
+			for (int i = 0; i < circleList.Count; i++) 
+				Destroy (circleList[i]);
+			for (int i = 0; i < circleList.Count; i++)
+				circleList.RemoveAt(i);
 
-			foreach (GameObject connection in connectionList)
-			{
-				Destroy (connection);
-
-			}
-
-			Debug.Log (circleList.Count);
+			for (int i = 0; i < connectionList.Count; i++) 
+				Destroy (connectionList[i]);
+			for (int i = 0; i < connectionList.Count; i++)
+				connectionList.RemoveAt(i);
 
 			list = data.signalRecord;
 			ShowGraph (list);
