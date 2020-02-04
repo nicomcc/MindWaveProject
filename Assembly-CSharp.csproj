@@ -73,6 +73,7 @@
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\DisplayData.cs" />
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\PreserveGameObject.cs" />
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\TGCConnectionController.cs" />
+     <Compile Include="Assets\Scripts\Classes\AttentionSignalHeader.cs" />
      <Compile Include="Assets\Scripts\SphereBehaviour.cs" />
      <Compile Include="Assets\Scripts\window_graph.cs" />
      <None Include="Assets\NeuroSkyAssets\NeuroSkyTGCController\Readme.txt" />

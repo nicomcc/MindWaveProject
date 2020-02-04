@@ -1,3 +1,4 @@
+C:\Users\nicolas.cury\MindWaveProject\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\Assembly-CSharp.dll
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\Assembly-CSharp.pdb
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\Jayrock.dll
@@ -130,6 +131,5 @@ C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\Vuforia.UnityExtensions.xml
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\UnityEngine.GoogleAudioSpatializer.xml
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\UnityEngine.HoloLens.xml
 C:\Users\nicolas.cury\MindWaveProject\Temp\bin\Debug\UnityEngine.SpatialTracking.xml
-C:\Users\nicolas.cury\MindWaveProject\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
 C:\Users\nicolas.cury\MindWaveProject\obj\Debug\Assembly-CSharp.dll
 C:\Users\nicolas.cury\MindWaveProject\obj\Debug\Assembly-CSharp.pdb
