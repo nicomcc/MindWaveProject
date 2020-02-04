@@ -14,7 +14,7 @@ public class window_graph : MonoBehaviour {
 
 	private List<AttentionSignal> list;
 
-	[SerializeField]private Sprite circleSprite;
+	[SerializeField]private Sprite circleSprite = null;
 
 	private float previousTime = 0;
 

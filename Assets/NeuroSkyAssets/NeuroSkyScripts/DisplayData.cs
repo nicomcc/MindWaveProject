@@ -28,7 +28,7 @@ public class DisplayData : MonoBehaviour
 
 	public bool startReading = false;
 	private int startTime;
-	private bool connectStart = false;
+	//private bool connectStart = false;
 
 	public int count = 0;
 
@@ -61,6 +61,7 @@ public class DisplayData : MonoBehaviour
       		indexSignalIcons = 1;
 		}
 	}
+
 	void OnUpdateAttention(int value){
 		attention1 = value;
 	}
@@ -73,27 +74,29 @@ public class DisplayData : MonoBehaviour
 
 	public void slider_change(float value)
 	{
-		//transform.position = new Vector3 (transform.position.x, value, transform.position.z);
 		slider = value;
 	}
 
 
     void OnGUI()
     {
+
+		attention1 = (int)slider;
+
 		GUILayout.BeginHorizontal();
 		
 		
         if (GUILayout.Button("Connect"))
         {
             controller.Connect();
-			connectStart = true;
+			//connectStart = true;
 
         }
         if (GUILayout.Button("DisConnect"))
         {
             controller.Disconnect();
 			indexSignalIcons = 1;
-			connectStart = false;
+			//connectStart = false;
         }
 		if (GUILayout.Button("Data Acquisition"))
 		{			
@@ -111,22 +114,15 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("Attention1:" + attention1);
         GUILayout.Label("Meditation1:" + meditation1);
 		//GUILayout.Label("Delta:" + delta);
-
-//		if (poorSignal1 == 0 && connectStart)
-//		{
-//			startReading = true;
-//			startTime = (int)Time.time;
-//			connectStart = false;
-//		}
 			
-
 
 
 		if(poorSignal1 <= 25 && startReading)
 		{
 			//attention1 = (int)slider;
 
-			currentTime = Time.time - startTime;
+			//currentTime = Time.time - startTime;
+			currentTime = Time.time;
 
 			if (currentTime - previousTime > dataAcquisitionTime) 
 			{
@@ -136,17 +132,8 @@ public class DisplayData : MonoBehaviour
 				signalRecord.Add (sig);
 				previousAttention = attention1;
 				count++;
-		}
-
-//			if (Time.time > 5) 
-//			{
-//				foreach (AttentionSignal aT in signalRecord)
-//				{
-//					//Debug.Log (aT.attention);
-//					//Debug.Log (aT.time);
-//				}
-//			}
-
+			}
+				
 		}
 
 

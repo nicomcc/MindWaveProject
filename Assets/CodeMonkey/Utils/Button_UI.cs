@@ -58,7 +58,7 @@ namespace CodeMonkey.Utils {
         private bool mouseOver;
         private float mouseOverPerSecFuncTimer;
 
-        private Action internalOnPointerEnterFunc, internalOnPointerExitFunc, internalOnPointerClickFunc;
+		private Action internalOnPointerEnterFunc = null, internalOnPointerExitFunc = null, internalOnPointerClickFunc = null;
 
 #if SOUND_MANAGER
         public Sound_Manager.Sound mouseOverSound, mouseClickSound;

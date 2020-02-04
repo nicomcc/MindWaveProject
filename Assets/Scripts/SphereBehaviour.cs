@@ -20,15 +20,15 @@ public class SphereBehaviour : MonoBehaviour {
 		
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			rb.AddForce(Vector3.up * brainItensity,ForceMode.VelocityChange);
+			rb.AddForce(new Vector3(3f,0,-3f) * brainItensity,ForceMode.VelocityChange);
 		}
 
-		if (Input.GetKey (KeyCode.Space)) {
-			//if (jumpValue < maxJumpValue) {
-			rb.AddForce(Vector3.up * brainItensity,ForceMode.Acceleration);
-			//}
-
-		}
+//		if (Input.GetKey (KeyCode.Space)) {
+//			//if (jumpValue < maxJumpValue) {
+//			rb.AddForce(new Vector3(-1f,0,1f) * brainItensity,ForceMode.VelocityChange);
+//			//}
+//
+//		}
 
 	}
 
@@ -62,16 +62,27 @@ public class SphereBehaviour : MonoBehaviour {
 
 	void Update () {
 
-	//	attention1 = (int)slider;
+		attention1 = (int)slider;
+			
 
 //		Physics.gravity = new Vector3 (0f, -gravityForce, 0f);
 //
 //		if(transform.position.y <= 9)
 //			rb.AddForce(Vector3.up * (attention1/100f) * brainItensity, ForceMode.Acceleration);
+//		if (transform.position.x <= -17)
+//			{
+//			rb.useGravity = false;
+//			}
 
+		rb.useGravity = (transform.position.x <= -17) ?  false :  true;
 
-		if (attention1 > 50 && transform.position.y <= 9)
-			rb.AddForce(Vector3.up * 9,ForceMode.Acceleration);
+		if (attention1 > 45 && transform.position.x <= 5)
+			rb.AddForce(new Vector3(0.15f, 0f, -0.15f) * brainItensity,ForceMode.VelocityChange);
+		
+		//(transform.position.x <= -17) ? rb.useGravity = false : rb.useGravity = true;
+
+//		if (attention1 > 50 && transform.position.y <= 9)
+//			rb.AddForce(Vector3.up * 9,ForceMode.Acceleration);
 
 		//if (this.transform.position.y >= 9)
 			//rb.AddForce(Vector3.down * 3,ForceMode.Acceleration);
