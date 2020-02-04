@@ -23,6 +23,8 @@ public class window_graph : MonoBehaviour {
 	private List<GameObject> circleList = new List<GameObject>();
 	private List<GameObject> connectionList = new List<GameObject>();
 
+	public float slider;
+
 	private void Awake()
 	{
 		graphContainer = transform.Find ("graphContainer").GetComponent<RectTransform> ();
@@ -89,7 +91,6 @@ public class window_graph : MonoBehaviour {
 		rectTransform.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
 		connectionList.Add (gameObject);
 	}
-
 
 
 	void Update () {

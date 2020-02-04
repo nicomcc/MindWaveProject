@@ -32,6 +32,8 @@ public class DisplayData : MonoBehaviour
 
 	public int count = 0;
 
+	public float slider;
+
     void Start()
     {
 		
@@ -69,6 +71,11 @@ public class DisplayData : MonoBehaviour
 		delta = value;
 	}
 
+	public void slider_change(float value)
+	{
+		//transform.position = new Vector3 (transform.position.x, value, transform.position.z);
+		slider = value;
+	}
 
 
     void OnGUI()
@@ -90,8 +97,8 @@ public class DisplayData : MonoBehaviour
         }
 		if (GUILayout.Button("Data Acquisition"))
 		{			
-			startReading = true;
-			startTime = (int)Time.time;
+			startReading = !startReading;
+		//	startTime = (int)Time.time;
 		}
 		
 		GUILayout.Space(Screen.width-250);
@@ -103,7 +110,7 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("PoorSignal1:" + poorSignal1);
         GUILayout.Label("Attention1:" + attention1);
         GUILayout.Label("Meditation1:" + meditation1);
-		GUILayout.Label("Delta:" + delta);
+		//GUILayout.Label("Delta:" + delta);
 
 //		if (poorSignal1 == 0 && connectStart)
 //		{
@@ -117,9 +124,11 @@ public class DisplayData : MonoBehaviour
 
 		if(poorSignal1 <= 25 && startReading)
 		{
+			//attention1 = (int)slider;
+
 			currentTime = Time.time - startTime;
 
-			if ((currentTime) - previousTime > dataAcquisitionTime) 
+			if (currentTime - previousTime > dataAcquisitionTime) 
 			{
 				previousTime = currentTime;
 

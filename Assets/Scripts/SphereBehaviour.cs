@@ -62,6 +62,7 @@ public class SphereBehaviour : MonoBehaviour {
 
 	void Update () {
 
+	//	attention1 = (int)slider;
 
 //		Physics.gravity = new Vector3 (0f, -gravityForce, 0f);
 //
@@ -69,7 +70,7 @@ public class SphereBehaviour : MonoBehaviour {
 //			rb.AddForce(Vector3.up * (attention1/100f) * brainItensity, ForceMode.Acceleration);
 
 
-		if (slider > 50 && transform.position.y <= 9)
+		if (attention1 > 50 && transform.position.y <= 9)
 			rb.AddForce(Vector3.up * 9,ForceMode.Acceleration);
 
 		//if (this.transform.position.y >= 9)
