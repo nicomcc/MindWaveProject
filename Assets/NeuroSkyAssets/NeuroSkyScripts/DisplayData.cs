@@ -119,7 +119,6 @@ public class DisplayData : MonoBehaviour
 
 		if(poorSignal1 <= 25 && startReading)
 		{
-			//attention1 = (int)slider;
 
 			//currentTime = Time.time - startTime;
 			currentTime = Time.time;

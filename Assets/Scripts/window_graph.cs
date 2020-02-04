@@ -8,7 +8,7 @@ using AttentionSignalHeader;
 public class window_graph : MonoBehaviour {
 
 	public GameObject signalReadObject;
-	public DisplayData data;
+	[HideInInspector] public DisplayData data;
 
 	private RectTransform graphContainer;
 

@@ -10,26 +10,15 @@ public class SphereBehaviour : MonoBehaviour {
 	private int attention1;
 	private int signal1;
 
-	public float brainItensity = 1f;
-	public float gravityForce = 9.81f;
+	public GameObject particle;
 
 	private float slider;
 
 	void Jump ()
 	{
+		if (Input.GetKeyDown (KeyCode.Space)) 
+			rb.AddForce(new Vector3(-Physics.gravity.x/1f, 0f, -Physics.gravity.z/1f) ,ForceMode.VelocityChange);
 		
-
-		if (Input.GetKeyDown (KeyCode.Space)) {
-			rb.AddForce(new Vector3(3f,0,-3f) * brainItensity,ForceMode.VelocityChange);
-		}
-
-//		if (Input.GetKey (KeyCode.Space)) {
-//			//if (jumpValue < maxJumpValue) {
-//			rb.AddForce(new Vector3(-1f,0,1f) * brainItensity,ForceMode.VelocityChange);
-//			//}
-//
-//		}
-
 	}
 
 	void Start()
@@ -40,8 +29,6 @@ public class SphereBehaviour : MonoBehaviour {
 
 		controller.UpdatePoorSignalEvent += OnUpdatePoorSignal;
 		controller.UpdateAttentionEvent += OnUpdateAttention;
-
-
 	}
 
 	void OnUpdateAttention(int value){
@@ -51,41 +38,34 @@ public class SphereBehaviour : MonoBehaviour {
 	void OnUpdatePoorSignal(int value){
 		signal1 = value;
 	}
-
-	// Update is called once per frame
+		
 
 	public void slider_change(float value)
 	{
-		//transform.position = new Vector3 (transform.position.x, value, transform.position.z);
 		slider = value;
 	}
+
 
 	void Update () {
 
 		attention1 = (int)slider;
-			
 
-//		Physics.gravity = new Vector3 (0f, -gravityForce, 0f);
-//
-//		if(transform.position.y <= 9)
-//			rb.AddForce(Vector3.up * (attention1/100f) * brainItensity, ForceMode.Acceleration);
-//		if (transform.position.x <= -17)
-//			{
-//			rb.useGravity = false;
-//			}
+		if (transform.position.x <= 28) 	
+			rb.useGravity = false;		
+		 else 
+			rb.useGravity = true;		
 
-		rb.useGravity = (transform.position.x <= -17) ?  false :  true;
-
-		if (attention1 > 45 && transform.position.x <= 5)
-			rb.AddForce(new Vector3(0.15f, 0f, -0.15f) * brainItensity,ForceMode.VelocityChange);
+		if (transform.position.x <= 28) 
+			particle.SetActive (true);		
+		else
+			particle.SetActive (false);
 		
-		//(transform.position.x <= -17) ? rb.useGravity = false : rb.useGravity = true;
+		//rb.useGravity = (transform.position.x <= -11) ?  ((false; particle.SetActive (true)) :  true);
 
-//		if (attention1 > 50 && transform.position.y <= 9)
-//			rb.AddForce(Vector3.up * 9,ForceMode.Acceleration);
+		if (attention1 > 45 && transform.position.x <= 40f) 
+			rb.AddForce (new Vector3 (-Physics.gravity.x / 25f, 0f, -Physics.gravity.z / 25f), ForceMode.VelocityChange);
 
-		//if (this.transform.position.y >= 9)
-			//rb.AddForce(Vector3.down * 3,ForceMode.Acceleration);
+		
 			
 		Jump ();
 	}
