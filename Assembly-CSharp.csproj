@@ -51,12 +51,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Asteroids Pack\Assets\Scripts\RandomRotator.cs" />
      <Compile Include="Assets\CodeMonkey\Assets.cs" />
      <Compile Include="Assets\CodeMonkey\CMDebug.cs" />
-     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollow.cs" />
-     <Compile Include="Assets\CodeMonkey\MonoBehaviours\CameraFollowSetup.cs" />
-     <Compile Include="Assets\CodeMonkey\MonoBehaviours\ComponentActions.cs" />
-     <Compile Include="Assets\CodeMonkey\MonoBehaviours\PositionRendererSorter.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\Button_Sprite.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\Button_UI.cs" />
      <Compile Include="Assets\CodeMonkey\Utils\FunctionPeriodic.cs" />
@@ -73,11 +70,20 @@
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\DisplayData.cs" />
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\PreserveGameObject.cs" />
      <Compile Include="Assets\NeuroSkyAssets\NeuroSkyScripts\TGCConnectionController.cs" />
+     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorLinear.cs" />
+     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorMove.cs" />
+     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorSelf.cs" />
+     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\particleAttractorSpherical.cs" />
+     <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\rotation.cs" />
      <Compile Include="Assets\Scripts\Classes\AttentionSignalHeader.cs" />
+     <Compile Include="Assets\Scripts\particleMovement.cs" />
      <Compile Include="Assets\Scripts\SphereBehaviour.cs" />
+     <Compile Include="Assets\Scripts\SphereRotation.cs" />
      <Compile Include="Assets\Scripts\window_graph.cs" />
+     <None Include="Assets\Particle Attractor by Moonflower Carnivore\Shaders\Particles Additive Intensify.shader" />
      <None Include="Assets\NeuroSkyAssets\NeuroSkyTGCController\Readme.txt" />
      <None Include="Assets\CodeMonkey\README.txt" />
+     <None Include="Assets\Particle Attractor by Moonflower Carnivore\Particle Attractor documentation.txt" />
  <Reference Include="UnityEngine.CoreModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2017.4.36f1/Editor/Data/Managed/UnityEngine/UnityEngine.CoreModule.dll</HintPath>
  </Reference>

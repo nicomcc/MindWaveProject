@@ -81,7 +81,7 @@ public class DisplayData : MonoBehaviour
     void OnGUI()
     {
 
-		attention1 = (int)slider;
+		//attention1 = (int)slider;
 
 		GUILayout.BeginHorizontal();
 		

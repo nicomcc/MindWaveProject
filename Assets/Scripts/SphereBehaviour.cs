@@ -48,7 +48,7 @@ public class SphereBehaviour : MonoBehaviour {
 
 	void Update () {
 
-		attention1 = (int)slider;
+		//attention1 = (int)slider;
 
 		if (transform.position.x <= 28) 	
 			rb.useGravity = false;		
