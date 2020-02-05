@@ -231,6 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5953fd7059c0524eb3c3474aeb438ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repelValue: 50
   particle: {fileID: 0}
 --- !u!114 &242724156
 MonoBehaviour:
@@ -532,6 +533,13 @@ MonoBehaviour:
   startReading: 0
   count: 0
   slider: 0
+  skyBox:
+  - {fileID: 2100000, guid: 19e2485c6f92d6944ad20466ac77b04c, type: 2}
+  - {fileID: 2100000, guid: 5b21c6a8ce40f9641bd1204324b90b2c, type: 2}
+  - {fileID: 2100000, guid: 966766f4829d6ad419eaaf7cf0712f85, type: 2}
+  - {fileID: 2100000, guid: b8f20d5ca50d16143afc11f5e4af6fc1, type: 2}
+  - {fileID: 2100000, guid: a07fadb24ea940240afba3afc1a692cc, type: 2}
+  - {fileID: 2100000, guid: e980bc7fbb00dc34b86b95ac842d1920, type: 2}
 --- !u!1 &699980597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1043,6 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5953fd7059c0524eb3c3474aeb438ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  repelValue: 40
   particle: {fileID: 181112145}
 --- !u!1 &1773606230
 GameObject:

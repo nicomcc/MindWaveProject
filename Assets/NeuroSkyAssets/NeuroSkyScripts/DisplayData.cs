@@ -34,9 +34,14 @@ public class DisplayData : MonoBehaviour
 
 	public float slider;
 
+	public Material[] skyBox;//SkyBox Materials..
+
     void Start()
-    {
-		
+	{
+		int index = Random.Range (0, skyBox.Length);
+		RenderSettings.skybox=skyBox[index];
+		Debug.Log(index);
+			
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
 		
 		controller.UpdatePoorSignalEvent += OnUpdatePoorSignal;
@@ -103,6 +108,14 @@ public class DisplayData : MonoBehaviour
 			startReading = !startReading;
 		//	startTime = (int)Time.time;
 		}
+
+		if (GUILayout.Button("Clear Data"))
+		{			
+			signalRecord.Clear ();
+
+		}
+
+
 		
 		GUILayout.Space(Screen.width-250);
 		GUILayout.Label(signalIcons[indexSignalIcons]);
