@@ -10,6 +10,8 @@ public class SphereBehaviour : MonoBehaviour {
 	private int attention1;
 	private int signal1;
 
+	public int repelValue = 50;
+
 	public GameObject particle;
 
 	private float slider;
@@ -62,8 +64,8 @@ public class SphereBehaviour : MonoBehaviour {
 		
 		//rb.useGravity = (transform.position.x <= -11) ?  ((false; particle.SetActive (true)) :  true);
 
-		if (attention1 > 45 && transform.position.x <= 40f) 
-			rb.AddForce (new Vector3 (-Physics.gravity.x / 25f, 0f, -Physics.gravity.z / 25f), ForceMode.VelocityChange);
+		if (attention1 > repelValue && transform.position.x <= 40f) 
+			rb.AddForce (new Vector3 (-Physics.gravity.x / 30f, 0f, -Physics.gravity.z / 30f), ForceMode.VelocityChange);
 
 		
 			
