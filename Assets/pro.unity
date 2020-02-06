@@ -1051,7 +1051,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5953fd7059c0524eb3c3474aeb438ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repelValue: 40
+  repelValue: 50
   particle: {fileID: 181112145}
 --- !u!1 &1773606230
 GameObject:
