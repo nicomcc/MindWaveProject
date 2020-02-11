@@ -38,9 +38,7 @@ public class DisplayData : MonoBehaviour
 
     void Start()
 	{
-		int index = Random.Range (0, skyBox.Length);
-		RenderSettings.skybox=skyBox[index];
-		Debug.Log(index);
+		SetRandomSkybox ();
 			
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
 		
@@ -51,6 +49,12 @@ public class DisplayData : MonoBehaviour
 		controller.UpdateDeltaEvent += OnUpdateDelta;
 		
     }
+
+	void SetRandomSkybox()
+	{
+		int index = Random.Range (0, skyBox.Length);
+		RenderSettings.skybox=skyBox[index];
+	}
 	
 	void OnUpdatePoorSignal(int value){
 		poorSignal1 = value;
@@ -97,7 +101,7 @@ public class DisplayData : MonoBehaviour
 			//connectStart = true;
 
         }
-        if (GUILayout.Button("DisConnect"))
+        if (GUILayout.Button("Disconnect"))
         {
             controller.Disconnect();
 			indexSignalIcons = 1;
@@ -112,7 +116,11 @@ public class DisplayData : MonoBehaviour
 		if (GUILayout.Button("Clear Data"))
 		{			
 			signalRecord.Clear ();
+		}
 
+		if (GUILayout.Button("Change Background"))
+		{			
+			SetRandomSkybox ();
 		}
 
 
