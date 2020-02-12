@@ -52,8 +52,8 @@ public class DisplayData : MonoBehaviour
 
 	void SetRandomSkybox()
 	{
-		int index = Random.Range (0, skyBox.Length);
-		RenderSettings.skybox=skyBox[index];
+		//int index = Random.Range (0, skyBox.Length);
+		//RenderSettings.skybox=skyBox[index];
 	}
 	
 	void OnUpdatePoorSignal(int value){
@@ -133,12 +133,13 @@ public class DisplayData : MonoBehaviour
 		
         GUILayout.Label("PoorSignal1:" + poorSignal1);
         GUILayout.Label("Attention1:" + attention1);
-        GUILayout.Label("Meditation1:" + meditation1);
+       // GUILayout.Label("Meditation1:" + meditation1);
 		//GUILayout.Label("Delta:" + delta);
 			
 
 
 		if(poorSignal1 <= 25 && startReading)
+		//if(startReading)
 		{
 
 			//currentTime = Time.time - startTime;
