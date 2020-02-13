@@ -1880,4 +1880,4 @@ MonoBehaviour:
   gridX: {fileID: 1003305358}
   gridXContainer: {fileID: 1396518285}
   slider: 0
-  dynamicLabelX: 1
+  dynamicLabelX: 0

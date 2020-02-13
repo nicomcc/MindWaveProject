@@ -34,7 +34,7 @@ public class window_graph : MonoBehaviour {
 	public GameObject gridXContainer;
 
 	public float slider;
-	public bool dynamicLabelX = false;
+	//public bool dynamicLabelX = false;
 
 	private GameObject lastCircleGameObject = null;
 
@@ -134,20 +134,7 @@ public class window_graph : MonoBehaviour {
 		circleList.Add (circleGameObject);
 
 
-
-
-//			if (dynamicLabelX)
-//			{
-//				GameObject labelXGameObject = Instantiate (labelX);
-//				RectTransform rectLabelX = labelXGameObject.GetComponent<RectTransform> ();
-//				rectLabelX.SetParent (graphContainer);
-//				rectLabelX.gameObject.SetActive (true);
-//				rectLabelX.anchoredPosition = new Vector3 (xPosition, -10f);
-//				rectLabelX.GetComponent<Text> ().text = valueList [i].time.ToString ("0");
-//				labelXList.Add (labelXGameObject);
-//			}
-		//}
-
+		//Reassign circle's positions
 		for (int i = 0; i < circleList.Count; i++) 
 		{
 			xPosition = (i / xSize) * graphWidth;
@@ -157,39 +144,31 @@ public class window_graph : MonoBehaviour {
 			}
 		}
 
+
+		//Reassign dor connection's positions, sizes and directions
 		for (int i = 0; i < connectionList.Count; i++) 
 		{
-
-
-			if (i > 0) {
-				RectTransform rectTransformA = circleList [i - 1].GetComponent<RectTransform> ();
-				RectTransform rectTransformB = circleList [i].GetComponent<RectTransform> ();
-				 
-
-				Vector2 dir = (rectTransformB.anchoredPosition - rectTransformA.anchoredPosition).normalized;
-				float distance = Vector2.Distance (rectTransformA.anchoredPosition, rectTransformB.anchoredPosition);
+			if (i > 0) 
+				ReassignDotConnection (connectionList [i], circleList [i - 1], circleList [i]);
 			
-
-				RectTransform rectTransformConnection = connectionList [i].GetComponent<RectTransform> ();
-
-				rectTransformConnection.sizeDelta = new Vector2 (distance, 1f);
-				rectTransformConnection.anchoredPosition = rectTransformA.anchoredPosition + dir * distance * .5f;
-				rectTransformConnection.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
-			}
 		}
 
+		//reassign first connection as last
 		if (connectionList.Count > 0) 
+			ReassignDotConnection (connectionList [0], circleList [circleList.Count - 2], circleList [circleList.Count - 1]);
+
+
+
+	/*	if (dynamicLabelX)
 		{
-			RectTransform rectCircleA = circleList [circleList.Count - 2].GetComponent<RectTransform> ();
-			RectTransform rectCircleB = circleList [circleList.Count-1].GetComponent<RectTransform> ();
-			Vector2 direction = (rectCircleB.anchoredPosition - rectCircleA.anchoredPosition).normalized;
-			float dist = Vector2.Distance (rectCircleA.anchoredPosition, rectCircleB.anchoredPosition);
-
-			connectionList [0].GetComponent<RectTransform> ().sizeDelta = new Vector2 (dist, 1f);
-			connectionList [0].GetComponent<RectTransform> ().anchoredPosition = rectCircleA.anchoredPosition + direction * dist * .5f;
-			connectionList [0].GetComponent<RectTransform> ().localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (direction));
-		}
-
+			GameObject labelXGameObject = Instantiate (labelX);
+			RectTransform rectLabelX = labelXGameObject.GetComponent<RectTransform> ();
+			rectLabelX.SetParent (graphContainer);
+			rectLabelX.gameObject.SetActive (true);
+			rectLabelX.anchoredPosition = new Vector3 (xPosition, -10f);
+			rectLabelX.GetComponent<Text> ().text = valueList [i].time.ToString ("0");
+			labelXList.Add (labelXGameObject);
+		}*/
 	}
 
 
@@ -208,6 +187,22 @@ public class window_graph : MonoBehaviour {
 		rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
 		rectTransform.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
 		connectionList.Add (gameObject);
+	}
+
+
+
+	private void ReassignDotConnection(GameObject dotConnectionA, GameObject dotPositionA, GameObject dotPositionB)
+	{
+		RectTransform rectTransformA = dotPositionA.GetComponent<RectTransform> ();
+		RectTransform rectTransformB = dotPositionB.GetComponent<RectTransform> ();				 
+		RectTransform rectTransformConnection = dotConnectionA.GetComponent<RectTransform> ();
+
+		Vector2 dir = (rectTransformB.anchoredPosition - rectTransformA.anchoredPosition).normalized;
+		float distance = Vector2.Distance (rectTransformA.anchoredPosition, rectTransformB.anchoredPosition);
+
+		rectTransformConnection.sizeDelta = new Vector2 (distance, 1f);
+		rectTransformConnection.anchoredPosition = rectTransformA.anchoredPosition + dir * distance * .5f;
+		rectTransformConnection.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
 	}
 
 
