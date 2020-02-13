@@ -90,7 +90,7 @@ public class DisplayData : MonoBehaviour
     void OnGUI()
     {
 
-		//attention1 = (int)slider;
+		attention1 = (int)slider;
 
 		GUILayout.BeginHorizontal();
 		
@@ -110,7 +110,7 @@ public class DisplayData : MonoBehaviour
 		if (GUILayout.Button("Data Acquisition"))
 		{			
 			startReading = !startReading;
-		//	startTime = (int)Time.time;
+			startTime = (int)Time.time;
 		}
 
 		if (GUILayout.Button("Clear Data"))
@@ -138,8 +138,8 @@ public class DisplayData : MonoBehaviour
 			
 
 
-		if(poorSignal1 <= 25 && startReading)
-		//if(startReading)
+		//if(poorSignal1 <= 25 && startReading)
+		if(startReading)
 		{
 
 			//currentTime = Time.time - startTime;
@@ -148,8 +148,7 @@ public class DisplayData : MonoBehaviour
 			if (currentTime - previousTime > dataAcquisitionTime) 
 			{
 				previousTime = currentTime;
-
-				AttentionSignal sig = new AttentionSignal (attention1, (int)currentTime);
+				AttentionSignal sig = new AttentionSignal (attention1, (int)(currentTime - startTime));
 				signalRecord.Add (sig);
 				previousAttention = attention1;
 				count++;

@@ -34,58 +34,47 @@ public class window_graph : MonoBehaviour {
 	public GameObject gridXContainer;
 
 	public float slider;
+	public bool dynamicLabelX = false;
 
 	private void Awake()
 	{
 		graphContainer = transform.Find ("graphContainer").GetComponent<RectTransform> ();
 
 		labelTemplateX = labelX.GetComponent<RectTransform> ();
-		labelTemplateY = labelY.GetComponent<RectTransform> ();
-										  
-		//labelTemplateY = transform.Find ("labelTemplateY").GetComponent<RectTransform> ();
-
-		List<int> valueList = new List<int> () { 10, 30, 50, 30, 60, 70, 40, 100, 33, 55, 44, 22, 33, 44, 22, 88, 32, 44, 76};
-
+		labelTemplateY = labelY.GetComponent<RectTransform> ();										 
 
 		data = signalReadObject.GetComponent<DisplayData>();
 		list = data.signalRecord;
-		//ShowGraph (list);
 		previousTime = data.currentTime;
 	}
 
-	void xGrid()
+	void xDashGrid()
 	{
 		float graphHeight = graphContainer.sizeDelta.y; 
 		float graphWidth = graphContainer.sizeDelta.x;
 
-		float dashCount = 25;
+		float dashCount = 15;
+		float xSpace = graphWidth / dashCount;
+		xSpace = (graphWidth + (xSpace - gridX.GetComponent<RectTransform> ().rect.width))/dashCount;
 
-		float xSpace = graphWidth/dashCount; 
-
-		Debug.Log (graphWidth);
-		Debug.Log (xSpace);
-
-		for (int j = 0; j <= 10; j++) {
-			for (int i = 0; i < dashCount; i++) {
-			
+		for (int j = 0; j <= 10; j++) 
+		{
+			for (int i = 0; i < dashCount; i++) 
+			{			
 				GameObject dash = Instantiate (gridX);
 				dash.transform.localPosition = new Vector3 (gridX.transform.position.x + (i * xSpace), gridX.transform.position.y +(graphHeight * j /10 ), gridX.transform.position.z);
 				dash.SetActive (true);
 				RectTransform rectLabelX = dash.GetComponent<RectTransform> ();
 				rectLabelX.SetParent (gridXContainer.transform);
-
-
 			}
 		}
-
 	}
 
-	void Start()
+	void CreateYLabels()
 	{
-		xGrid ();
-		//Create y labels
 		int separatorCount = 10;
 		float graphHeight = graphContainer.sizeDelta.y; 
+
 		for (int i = 0; i <= separatorCount; i++) 
 		{
 			RectTransform labelY = Instantiate (labelTemplateY);
@@ -95,8 +84,13 @@ public class window_graph : MonoBehaviour {
 			labelY.anchoredPosition = new Vector2 (-10f, normalizedValue * graphHeight);
 			labelY.GetComponent<Text> ().text = Mathf.RoundToInt (normalizedValue * 100).ToString ();
 		}
+	}
 
+	void Start()
+	{
+		xDashGrid ();
 
+		CreateYLabels ();
 	}
 
 
@@ -135,15 +129,16 @@ public class window_graph : MonoBehaviour {
 			circleList.Add (circleGameObject);
 			lastCircleGameObject = circleGameObject;
 
-			/*
+			if (dynamicLabelX)
+			{
 			GameObject labelXGameObject = Instantiate (labelX);
 			RectTransform rectLabelX = labelXGameObject.GetComponent<RectTransform> ();
 			rectLabelX.SetParent (graphContainer);
 			rectLabelX.gameObject.SetActive (true);
 			rectLabelX.anchoredPosition = new Vector3 (xPosition, -10f);
 			rectLabelX.GetComponent<Text> ().text = valueList [i].time.ToString ("0");
-			labelXList.Add (labelXGameObject);*/
-
+			labelXList.Add (labelXGameObject);
+			}
 		}
 
 
@@ -184,10 +179,12 @@ public class window_graph : MonoBehaviour {
 			for (int i = 0; i < connectionList.Count; i++)
 				connectionList.RemoveAt(i);
 
-			for (int i = 0; i < labelXList.Count; i++) 
-				Destroy (labelXList[i]);
-			for (int i = 0; i < labelXList.Count; i++)
-				labelXList.RemoveAt(i);
+			if (dynamicLabelX) {
+				for (int i = 0; i < labelXList.Count; i++)
+					Destroy (labelXList [i]);
+				for (int i = 0; i < labelXList.Count; i++)
+					labelXList.RemoveAt (i);
+			}
 
 			list = data.signalRecord;
 			ShowGraph (list);

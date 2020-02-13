@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/pro.unity
+- path: C:/Users/nicolas.cury/Downloads/MindWaveProject-master/Assets/pro.unity
   isLoaded: 1
   isActive: 1
