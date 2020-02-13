@@ -117,7 +117,7 @@ public class window_graph : MonoBehaviour {
 		float yMaximum = 100f;
 		float xSize = valueList.Count - 1;
 
-		GameObject lastCircleGameObject = null;
+
 
 
 		float xPosition = (xSize) * graphWidth;
@@ -126,21 +126,26 @@ public class window_graph : MonoBehaviour {
 
 		GameObject circleGameObject = CreateCircle (new Vector2 (xPosition, yPosition));
 
+		if (lastCircleGameObject != null)
+			CreateDotConnection (lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition);
+
+		lastCircleGameObject = circleGameObject;
+
 		circleList.Add (circleGameObject);
 
 
 
 
-			/*if (dynamicLabelX)
-			{
-				GameObject labelXGameObject = Instantiate (labelX);
-				RectTransform rectLabelX = labelXGameObject.GetComponent<RectTransform> ();
-				rectLabelX.SetParent (graphContainer);
-				rectLabelX.gameObject.SetActive (true);
-				rectLabelX.anchoredPosition = new Vector3 (xPosition, -10f);
-				rectLabelX.GetComponent<Text> ().text = valueList [i].time.ToString ("0");
-				labelXList.Add (labelXGameObject);
-			}*/
+//			if (dynamicLabelX)
+//			{
+//				GameObject labelXGameObject = Instantiate (labelX);
+//				RectTransform rectLabelX = labelXGameObject.GetComponent<RectTransform> ();
+//				rectLabelX.SetParent (graphContainer);
+//				rectLabelX.gameObject.SetActive (true);
+//				rectLabelX.anchoredPosition = new Vector3 (xPosition, -10f);
+//				rectLabelX.GetComponent<Text> ().text = valueList [i].time.ToString ("0");
+//				labelXList.Add (labelXGameObject);
+//			}
 		//}
 
 		for (int i = 0; i < circleList.Count; i++) 
@@ -149,21 +154,45 @@ public class window_graph : MonoBehaviour {
 			if (circleList.Count > 1) 
 			{
 				circleList [i].transform.position = new Vector2 (graphContainer.transform.position.x + xPosition, circleList [i].transform.position.y);
-				circleGameObject = circleList [i];
-				if (lastCircleGameObject != null)
-				//{
-				//if (i > 0)
-					CreateDotConnection (lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition);
-				//}
-				lastCircleGameObject = circleGameObject;
 			}
 		}
 
+		for (int i = 0; i < connectionList.Count; i++) 
+		{
 
 
+			if (i > 0) {
+				RectTransform rectTransformA = circleList [i - 1].GetComponent<RectTransform> ();
+				RectTransform rectTransformB = circleList [i].GetComponent<RectTransform> ();
+				 
 
-		Debug.Log (valueList.Count);
+				Vector2 dir = (rectTransformB.anchoredPosition - rectTransformA.anchoredPosition).normalized;
+				float distance = Vector2.Distance (rectTransformA.anchoredPosition, rectTransformB.anchoredPosition);
+			
+
+				RectTransform rectTransformConnection = connectionList [i].GetComponent<RectTransform> ();
+
+				rectTransformConnection.sizeDelta = new Vector2 (distance, 1f);
+				rectTransformConnection.anchoredPosition = rectTransformA.anchoredPosition + dir * distance * .5f;
+				rectTransformConnection.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
+			}
+		}
+
+		if (connectionList.Count > 0) 
+		{
+			RectTransform rectCircleA = circleList [circleList.Count - 2].GetComponent<RectTransform> ();
+			RectTransform rectCircleB = circleList [circleList.Count-1].GetComponent<RectTransform> ();
+			Vector2 direction = (rectCircleB.anchoredPosition - rectCircleA.anchoredPosition).normalized;
+			float dist = Vector2.Distance (rectCircleA.anchoredPosition, rectCircleB.anchoredPosition);
+
+			connectionList [0].GetComponent<RectTransform> ().sizeDelta = new Vector2 (dist, 1f);
+			connectionList [0].GetComponent<RectTransform> ().anchoredPosition = rectCircleA.anchoredPosition + direction * dist * .5f;
+			connectionList [0].GetComponent<RectTransform> ().localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (direction));
+		}
+
 	}
+
+
 
 	private void CreateDotConnection(Vector2 dotPositionA, Vector2 dotPositionB)
 	{
@@ -194,11 +223,11 @@ public class window_graph : MonoBehaviour {
 			for (int i = 0; i < circleList.Count; i++)
 				circleList.RemoveAt(i);*/
 
-			for (int i = 0; i < connectionList.Count; i++) 
+			/*for (int i = 0; i < connectionList.Count; i++) 
 				Destroy (connectionList[i]);
 			for (int i = 0; i < connectionList.Count; i++)
 				connectionList.RemoveAt(i);
-
+			*/
 			//if (dynamicLabelX) {
 				for (int i = 0; i < labelXList.Count; i++)
 					Destroy (labelXList [i]);
