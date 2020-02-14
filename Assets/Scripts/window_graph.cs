@@ -25,15 +25,16 @@ public class window_graph : MonoBehaviour {
 
 	private int previousCount = 0;
 
-	private List<GameObject> circleList = new List<GameObject>();
-	private List<GameObject> connectionList = new List<GameObject>();
+	public List<GameObject> circleList = new List<GameObject>();
+	public List<GameObject> connectionList = new List<GameObject>();
 
 	private List<GameObject> labelXList = new List<GameObject>();
 
 	public GameObject gridX;
 	public GameObject gridXContainer;
 
-	public float slider;
+	[HideInInspector] public float slider;
+
 	//public bool dynamicLabelX = false;
 
 	private GameObject lastCircleGameObject = null;
@@ -90,8 +91,7 @@ public class window_graph : MonoBehaviour {
 
 	void Start()
 	{
-		//xDashGrid ();
-
+		xDashGrid ();
 		CreateYLabels ();
 	}
 
@@ -99,6 +99,7 @@ public class window_graph : MonoBehaviour {
 	private GameObject CreateCircle(Vector2 anchoredPosition)
 	{
 		GameObject gameObject = new GameObject ("Circle", typeof(Image));
+		gameObject.tag = "dot";
 		gameObject.transform.SetParent (graphContainer, false);
 		gameObject.GetComponent<Image> ().sprite = circleSprite;
 		RectTransform rectTransform = gameObject.GetComponent<RectTransform> ();
@@ -117,12 +118,8 @@ public class window_graph : MonoBehaviour {
 		float yMaximum = 100f;
 		float xSize = valueList.Count - 1;
 
-
-
-
 		float xPosition = (xSize) * graphWidth;
 		float yPosition = (valueList[valueList.Count-1].attention / yMaximum) * graphHeight;
-
 
 		GameObject circleGameObject = CreateCircle (new Vector2 (xPosition, yPosition));
 
@@ -133,7 +130,6 @@ public class window_graph : MonoBehaviour {
 
 		circleList.Add (circleGameObject);
 
-
 		//Reassign circle's positions
 		for (int i = 0; i < circleList.Count; i++) 
 		{
@@ -143,7 +139,6 @@ public class window_graph : MonoBehaviour {
 				circleList [i].transform.position = new Vector2 (graphContainer.transform.position.x + xPosition, circleList [i].transform.position.y);
 			}
 		}
-
 
 		//Reassign dor connection's positions, sizes and directions
 		for (int i = 0; i < connectionList.Count; i++) 
@@ -156,8 +151,6 @@ public class window_graph : MonoBehaviour {
 		//reassign first connection as last
 		if (connectionList.Count > 0) 
 			ReassignDotConnection (connectionList [0], circleList [circleList.Count - 2], circleList [circleList.Count - 1]);
-
-
 
 	/*	if (dynamicLabelX)
 		{
@@ -176,6 +169,7 @@ public class window_graph : MonoBehaviour {
 	private void CreateDotConnection(Vector2 dotPositionA, Vector2 dotPositionB)
 	{
 		GameObject gameObject = new GameObject ("dotConnection", typeof(Image));
+		gameObject.tag = "connection";
 		gameObject.transform.SetParent (graphContainer, false);
 		gameObject.GetComponent<Image> ().color = new Color (1, 1, 1, .5f);
 		RectTransform rectTransform = gameObject.GetComponent<RectTransform> ();
@@ -235,5 +229,24 @@ public class window_graph : MonoBehaviour {
 		}
 			
 	}
+
+	/*void OnGUI()
+	{
+		GUILayout.Label("");	
+
+		if (GUILayout.Button ("Clear Data")) {	
+			for (int i = 0; i < circleList.Count; i++) 
+				Destroy (circleList[i]);
+			for (int i = 0; i < circleList.Count; i++)
+				circleList.RemoveAt(i);
+
+			for (int i = 0; i < connectionList.Count; i++) 
+			Destroy (connectionList[i]);
+			for (int i = 0; i < connectionList.Count; i++)
+				connectionList.RemoveAt(i);
+
+			data.signalRecord.Clear ();
+		}
+	}*/
 
 }

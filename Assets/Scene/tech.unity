@@ -1877,8 +1877,7 @@ MonoBehaviour:
   labelX: {fileID: 1792753263}
   labelY: {fileID: 2025057884}
   circleSprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  circleList: []
-  connectionList: []
   gridX: {fileID: 1003305358}
   gridXContainer: {fileID: 1396518285}
   slider: 0
+  dynamicLabelX: 0

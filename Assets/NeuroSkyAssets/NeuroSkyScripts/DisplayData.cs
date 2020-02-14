@@ -14,6 +14,8 @@ public class DisplayData : MonoBehaviour
 	
     TGCConnectionController controller;
 
+	window_graph graph;
+
     private int poorSignal1;
     public int attention1;
 	private int previousAttention = 0;
@@ -113,15 +115,40 @@ public class DisplayData : MonoBehaviour
 			startTime = (int)Time.time;
 		}
 
-		if (GUILayout.Button("Clear Data"))
-		{			
-			signalRecord.Clear ();
-		}
+		//if (GUILayout.Button("Clear Data"))
+		//{	
+			/*GameObject[] dots = GameObject.FindGameObjectsWithTag ("dot");
+			GameObject[] connections = GameObject.FindGameObjectsWithTag ("connection");
 
-		if (GUILayout.Button("Change Background"))
+			for (int i = 0; i < dots.Length; i++) 
+				Destroy (dots[i]);
+			for (int i = 0; i < connections.Length; i++) 
+				Destroy (connections[i]);*/
+
+			//List<GameObject> cList = graph.circleList;
+			//Debug.Log (cList.Count);
+
+			/*for (int i = 0; i < graph.circleList.Count; i++)
+				;
+				//Destroy (graph.circleList [i]);
+			for (int i = 0; i < graph.circleList.Count; i++);
+				//graph.circleList.RemoveAt(i);
+
+			for (int i = 0; i < graph.connectionList.Count; i++)
+				;
+				//Destroy (graph.connectionList[i]);
+			for (int i = 0; i < graph.connectionList.Count; i++);
+				//graph.connectionList.RemoveAt(i);?*/
+
+		//	signalRecord.Clear ();
+		//}
+
+		
+
+		/*if (GUILayout.Button("Change Background"))
 		{			
 			SetRandomSkybox ();
-		}
+		}*/
 
 
 		
@@ -134,8 +161,7 @@ public class DisplayData : MonoBehaviour
         GUILayout.Label("PoorSignal1:" + poorSignal1);
         GUILayout.Label("Attention1:" + attention1);
        // GUILayout.Label("Meditation1:" + meditation1);
-		//GUILayout.Label("Delta:" + delta);
-			
+		//GUILayout.Label("Delta:" + delta);		
 
 
 		//if(poorSignal1 <= 25 && startReading)
