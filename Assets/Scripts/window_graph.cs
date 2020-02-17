@@ -34,10 +34,13 @@ public class window_graph : MonoBehaviour {
 	public GameObject gridXContainer;
 
 	[HideInInspector] public float slider;
+	 public float soundSlider;
 
 	//public bool dynamicLabelX = false;
 
 	private GameObject lastCircleGameObject = null;
+
+	private GameObject graphMarkSlider;
 
 	private void Awake()
 	{
@@ -49,6 +52,29 @@ public class window_graph : MonoBehaviour {
 		data = signalReadObject.GetComponent<DisplayData>();
 		list = data.signalRecord;
 		previousTime = data.currentTime;
+	}
+
+	private void InstantiateSoundSlider()
+	{
+		float graphHeight = graphContainer.sizeDelta.y; 
+		Debug.Log (graphHeight);
+	    graphMarkSlider = CreateDotConnection(new Vector2 (0,graphContainer.anchoredPosition.y), new Vector2 (0, graphHeight), false);
+		graphMarkSlider.GetComponent<Image> ().color = new Color (46, 46, 80, .3f);
+		graphMarkSlider.GetComponent<RectTransform> ().sizeDelta = (new Vector2 (gameObject.GetComponent<RectTransform> ().sizeDelta.x, 2f));
+	}
+
+	public void UpdateSoundSlider()
+	{
+		float graphWidth = graphContainer.sizeDelta.x;
+		float pos = graphContainer.sizeDelta.x* soundSlider * 0.01f;
+		graphMarkSlider.GetComponent<RectTransform>().anchoredPosition = new Vector2 (pos, graphContainer.sizeDelta.y * 0.5f);
+		Debug.Log (soundSlider);
+	}
+
+
+	public void soundSlider_change(float value)
+	{
+		soundSlider = value;
 	}
 
 	void xDashGrid()
@@ -93,6 +119,8 @@ public class window_graph : MonoBehaviour {
 	{
 		xDashGrid ();
 		CreateYLabels ();
+
+		InstantiateSoundSlider ();
 	}
 
 
@@ -124,7 +152,7 @@ public class window_graph : MonoBehaviour {
 		GameObject circleGameObject = CreateCircle (new Vector2 (xPosition, yPosition));
 
 		if (lastCircleGameObject != null)
-			CreateDotConnection (lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition);
+			CreateDotConnection (lastCircleGameObject.GetComponent<RectTransform>().anchoredPosition, circleGameObject.GetComponent<RectTransform>().anchoredPosition, true);
 
 		lastCircleGameObject = circleGameObject;
 
@@ -166,7 +194,7 @@ public class window_graph : MonoBehaviour {
 
 
 
-	private void CreateDotConnection(Vector2 dotPositionA, Vector2 dotPositionB)
+	private GameObject CreateDotConnection(Vector2 dotPositionA, Vector2 dotPositionB, bool addToList)
 	{
 		GameObject gameObject = new GameObject ("dotConnection", typeof(Image));
 		gameObject.tag = "connection";
@@ -180,7 +208,8 @@ public class window_graph : MonoBehaviour {
 		rectTransform.sizeDelta = new Vector2 (distance, 1f);
 		rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
 		rectTransform.localEulerAngles = new Vector3 (0, 0, UtilsClass.GetAngleFromVectorFloat (dir));
-		connectionList.Add (gameObject);
+		if (addToList) connectionList.Add (gameObject);
+		return gameObject;
 	}
 
 
@@ -201,6 +230,7 @@ public class window_graph : MonoBehaviour {
 
 
 	void Update () {
+		UpdateSoundSlider ();
 
 		if (data.count != previousCount) 
 		{
@@ -226,6 +256,8 @@ public class window_graph : MonoBehaviour {
 
 			list = data.signalRecord;
 			ShowGraph (list);
+
+
 		}
 			
 	}

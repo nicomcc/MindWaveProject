@@ -28,8 +28,8 @@ public class DisplayData : MonoBehaviour
 
 	private float delta;
 
-	public bool startReading = false;
-	private int startTime;
+	[HideInInspector] public bool startReading = false;
+	[HideInInspector] public int startTime;
 	//private bool connectStart = false;
 
 	public int count = 0;
@@ -92,7 +92,7 @@ public class DisplayData : MonoBehaviour
     void OnGUI()
     {
 
-		attention1 = (int)slider;
+		//attention1 = (int)slider;
 
 		GUILayout.BeginHorizontal();
 		
