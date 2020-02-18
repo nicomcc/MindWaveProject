@@ -77,6 +77,8 @@
      <Compile Include="Assets\Particle Attractor by Moonflower Carnivore\Scripts\rotation.cs" />
      <Compile Include="Assets\Scripts\Classes\AttentionSignalHeader.cs" />
      <Compile Include="Assets\Scripts\particleMovement.cs" />
+     <Compile Include="Assets\Scripts\SavWav.cs" />
+     <Compile Include="Assets\Scripts\SoundHandler.cs" />
      <Compile Include="Assets\Scripts\SphereBehaviour.cs" />
      <Compile Include="Assets\Scripts\SphereRotation.cs" />
      <Compile Include="Assets\Scripts\window_graph.cs" />

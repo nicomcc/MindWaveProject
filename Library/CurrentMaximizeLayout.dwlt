@@ -25,7 +25,7 @@ MonoBehaviour:
   m_MinSize: {x: 917, y: 442}
   m_MaxSize: {x: 22012, y: 10021}
   vertical: 0
-  controlID: 6905
+  controlID: 9
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 202, y: 442}
   m_MaxSize: {x: 4002, y: 8042}
   vertical: 1
-  controlID: 6906
+  controlID: 10
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -308,9 +308,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 90dfffff
-    m_LastClickedID: -8304
-    m_ExpandedIDs: 90dfffff9cfbffff00000000de2b00002c2c0000362c0000422c0000
+    m_SelectedIDs: c82f0000
+    m_LastClickedID: 12232
+    m_ExpandedIDs: 32d3ffff5cd5fffff0d6ffff88d8ffffa2fbffff00000000502c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -397,19 +397,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/Scripts
+    - Assets/Scene
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scripts
+  - Assets/Scene
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\nicolas.cury\MindWaveProject
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e8290000
-    m_LastClickedID: 10728
-    m_ExpandedIDs: 0000000090290000d82900006a2a00007a2a0000b62a0000082b000000ca9a3bffffff7f
+    m_SelectedIDs: f8290000
+    m_LastClickedID: 10744
+    m_ExpandedIDs: 000000008c290000d4290000762a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -437,7 +437,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000090290000d82900006a2a00007a2a0000b62a0000082b000000ca9a3bffffff7f
+    m_ExpandedIDs: 000000008c290000d4290000662a0000762a0000b22a0000042b0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -462,9 +462,9 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 90dfffff
-    m_LastClickedInstanceID: -8304
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: c82f0000
+    m_LastClickedInstanceID: 12232
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -544,7 +544,7 @@ MonoBehaviour:
     width: 275
     height: 598
   m_PersistentViewDataDictionary: {fileID: 0}
-  m_ScrollPosition: {x: 0, y: 45.95508}
+  m_ScrollPosition: {x: 0, y: 0}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: -160

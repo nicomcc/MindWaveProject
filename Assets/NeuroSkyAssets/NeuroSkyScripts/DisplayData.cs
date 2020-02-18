@@ -109,11 +109,12 @@ public class DisplayData : MonoBehaviour
 			indexSignalIcons = 1;
 			//connectStart = false;
         }
-		if (GUILayout.Button("Data Acquisition"))
+
+		/*if (GUILayout.Button("Data Acquisition"))
 		{			
 			startReading = !startReading;
 			startTime = (int)Time.time;
-		}
+		}*/
 
 		//if (GUILayout.Button("Clear Data"))
 		//{	
