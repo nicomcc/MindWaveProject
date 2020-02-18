@@ -99,7 +99,7 @@ public class SoundHandler : MonoBehaviour {
 			GUILayout.Label ("Audio Time: " + recordTime.ToString ("F1"));
 		
 		
-		GUILayout.Label ("Audio current Time: " + audioSection.ToString("F1"));
+		GUILayout.Label ("Audio Slider Time: " + audioSection.ToString("F1"));
 		GUILayout.Label ("PlayTime: " + graphData.startPlayTime.ToString("F1"));
 	
 	}

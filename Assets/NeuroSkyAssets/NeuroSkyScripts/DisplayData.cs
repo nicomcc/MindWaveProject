@@ -40,6 +40,7 @@ public class DisplayData : MonoBehaviour
 
     void Start()
 	{
+		Screen.SetResolution(1024, 768, false);
 		SetRandomSkybox ();
 			
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
@@ -175,7 +176,7 @@ public class DisplayData : MonoBehaviour
 			if (currentTime - previousTime > dataAcquisitionTime) 
 			{
 				previousTime = currentTime;
-				AttentionSignal sig = new AttentionSignal (attention1, (int)(currentTime - startTime));
+				AttentionSignal sig = new AttentionSignal (attention1, (int)(currentTime - startTime), poorSignal1);
 				signalRecord.Add (sig);
 				previousAttention = attention1;
 				count++;

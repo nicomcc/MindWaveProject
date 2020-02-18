@@ -313,7 +313,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 79.1}
+  m_AnchoredPosition: {x: 0, y: 129.7}
   m_SizeDelta: {x: 500, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &302993388
@@ -878,6 +878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundSlider: 0
   audioTime: 0
+  audioSection: 0
   graphObject: {fileID: 2041880017}
 --- !u!4 &772781592
 Transform:
@@ -2363,7 +2364,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 34.17}
+  m_AnchoredPosition: {x: 0, y: 62.81}
   m_SizeDelta: {x: 500, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041880019
@@ -2389,4 +2390,6 @@ MonoBehaviour:
   slider: 0
   soundSlider: 0
   soundMovement: 0
+  startPlayTime: 0
   soundHandlerObject: {fileID: 772781590}
+  startPlay: 0
