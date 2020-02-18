@@ -42,12 +42,22 @@ public class window_graph : MonoBehaviour {
 
 	private GameObject graphMarkSlider;
 
+	public bool soundMovement = false;
+
+	public float startPlayTime = 0;
+
+	public GameObject soundHandlerObject;
+	private SoundHandler soundHandler;
+
+	public bool startPlay = false;
+
 	private void Awake()
 	{
 		graphContainer = transform.Find ("graphContainer").GetComponent<RectTransform> ();
 
 		labelTemplateX = labelX.GetComponent<RectTransform> ();
-		labelTemplateY = labelY.GetComponent<RectTransform> ();										 
+		labelTemplateY = labelY.GetComponent<RectTransform> ();	
+		soundHandler = soundHandlerObject.GetComponent<SoundHandler> ();
 
 		data = signalReadObject.GetComponent<DisplayData>();
 		list = data.signalRecord;
@@ -57,7 +67,7 @@ public class window_graph : MonoBehaviour {
 	private void InstantiateSoundSlider()
 	{
 		float graphHeight = graphContainer.sizeDelta.y; 
-		Debug.Log (graphHeight);
+		//Debug.Log (graphHeight);
 	    graphMarkSlider = CreateDotConnection(new Vector2 (0,graphContainer.anchoredPosition.y), new Vector2 (0, graphHeight), false);
 		graphMarkSlider.GetComponent<Image> ().color = new Color (46, 46, 80, .3f);
 		graphMarkSlider.GetComponent<RectTransform> ().sizeDelta = (new Vector2 (gameObject.GetComponent<RectTransform> ().sizeDelta.x, 2f));
@@ -65,10 +75,32 @@ public class window_graph : MonoBehaviour {
 
 	public void UpdateSoundSlider()
 	{
-		float graphWidth = graphContainer.sizeDelta.x;
-		float pos = graphContainer.sizeDelta.x* soundSlider * 0.01f;
-		graphMarkSlider.GetComponent<RectTransform>().anchoredPosition = new Vector2 (pos, graphContainer.sizeDelta.y * 0.5f);
-		Debug.Log (soundSlider);
+		if (!soundMovement) 
+		{
+			float pos = graphContainer.sizeDelta.x * soundSlider * 0.01f;
+			graphMarkSlider.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (pos, graphContainer.sizeDelta.y * 0.5f);
+		}
+
+		//if recorded sound is playing, sound bar should move along 
+		else
+		{
+			if (startPlay) //start from current section time defined by sound slider
+			{
+				startPlayTime = soundHandler.audioSection;
+				startPlay = false;
+			}
+
+			startPlayTime += Time.deltaTime;
+			float soundPosition = startPlayTime / soundHandler.audioTime;
+			float pos = graphContainer.sizeDelta.x * soundPosition;
+			graphMarkSlider.GetComponent<RectTransform> ().anchoredPosition = new Vector2 (pos, graphContainer.sizeDelta.y * 0.5f);
+
+			if (startPlayTime >= soundHandler.audioTime) 
+			{
+				soundMovement = false;
+				startPlayTime = 0;
+			}
+		}			
 	}
 
 
@@ -231,6 +263,8 @@ public class window_graph : MonoBehaviour {
 
 	void Update () {
 		UpdateSoundSlider ();
+
+
 
 		if (data.count != previousCount) 
 		{
