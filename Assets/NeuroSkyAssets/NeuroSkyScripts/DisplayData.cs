@@ -40,6 +40,9 @@ public class DisplayData : MonoBehaviour
 
     void Start()
 	{
+		/*if (Screen.fullScreen)
+			Screen.fullScreen = false;*/
+		
 		SetRandomSkybox ();
 			
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
@@ -92,7 +95,7 @@ public class DisplayData : MonoBehaviour
     void OnGUI()
     {
 
-		attention1 = (int)slider;
+		//attention1 = (int)slider;
 
 		GUILayout.BeginHorizontal();
 		
