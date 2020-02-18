@@ -40,6 +40,8 @@ public class DisplayData : MonoBehaviour
 
     void Start()
 	{
+		Screen.SetResolution(1280, 768, true);
+
 		SetRandomSkybox ();
 			
 		controller = GameObject.Find("NeuroSkyTGCController").GetComponent<TGCConnectionController>();
