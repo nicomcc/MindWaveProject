@@ -40,8 +40,7 @@ public class DisplayData : MonoBehaviour
 
     void Start()
 	{
-		/*if (Screen.fullScreen)
-			Screen.fullScreen = false;*/
+		Screen.SetResolution(800, 600, false);
 		
 		SetRandomSkybox ();
 			
