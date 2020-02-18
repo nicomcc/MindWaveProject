@@ -54,8 +54,8 @@ public class DisplayData : MonoBehaviour
 
 	void SetRandomSkybox()
 	{
-		//int index = Random.Range (0, skyBox.Length);
-		//RenderSettings.skybox=skyBox[index];
+		int index = Random.Range (0, skyBox.Length);
+		RenderSettings.skybox=skyBox[index];
 	}
 	
 	void OnUpdatePoorSignal(int value){
@@ -110,11 +110,11 @@ public class DisplayData : MonoBehaviour
 			//connectStart = false;
         }
 
-		/*if (GUILayout.Button("Data Acquisition"))
+		if (GUILayout.Button("Data Acquisition"))
 		{			
 			startReading = !startReading;
 			startTime = (int)Time.time;
-		}*/
+		}
 
 		//if (GUILayout.Button("Clear Data"))
 		//{	
@@ -146,10 +146,10 @@ public class DisplayData : MonoBehaviour
 
 		
 
-		/*if (GUILayout.Button("Change Background"))
+		if (GUILayout.Button("Change Background"))
 		{			
 			SetRandomSkybox ();
-		}*/
+		}
 
 
 		

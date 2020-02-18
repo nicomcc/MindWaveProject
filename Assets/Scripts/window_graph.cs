@@ -85,16 +85,18 @@ public class window_graph : MonoBehaviour {
 		float dashCount = 15;
 		float xSpace = graphWidth / dashCount;
 		xSpace = (graphWidth + (xSpace - gridX.GetComponent<RectTransform> ().rect.width))/dashCount;
+		Debug.Log (xSpace);
 
 		for (int j = 0; j <= 10; j++) 
 		{
 			for (int i = 0; i < dashCount; i++) 
 			{			
 				GameObject dash = Instantiate (gridX);
-				dash.transform.localPosition = new Vector3 (gridX.transform.position.x + (i * xSpace), gridX.transform.position.y +(graphHeight * j /10 ), gridX.transform.position.z);
+				RectTransform rectDash = dash.GetComponent<RectTransform> ();
+				rectDash.SetParent (gridXContainer.transform);
+				rectDash.anchoredPosition = new Vector2 (gridX.GetComponent<RectTransform>().anchoredPosition.x + (i * xSpace), gridX.GetComponent<RectTransform>().anchoredPosition.y  + (graphHeight * j /10 ));
 				dash.SetActive (true);
-				RectTransform rectLabelX = dash.GetComponent<RectTransform> ();
-				rectLabelX.SetParent (gridXContainer.transform);
+
 			}
 		}
 	}
@@ -117,10 +119,10 @@ public class window_graph : MonoBehaviour {
 
 	void Start()
 	{
-		xDashGrid ();
+		//xDashGrid ();
 		CreateYLabels ();
 
-		InstantiateSoundSlider ();
+		//InstantiateSoundSlider ();
 	}
 
 
@@ -230,7 +232,7 @@ public class window_graph : MonoBehaviour {
 
 
 	void Update () {
-		UpdateSoundSlider ();
+		//UpdateSoundSlider ();
 
 		if (data.count != previousCount) 
 		{
