@@ -114,10 +114,7 @@ public class DisplayData : MonoBehaviour
 			indexSignalIcons = 1;
 			//connectStart = false;
         }
-
-		if (GUILayout.Button ("Log CSV")) 
-		{
-		}
+			
 
 		/*if (GUILayout.Button("Data Acquisition"))
 		{			

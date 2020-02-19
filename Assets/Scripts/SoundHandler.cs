@@ -31,12 +31,16 @@ public class SoundHandler : MonoBehaviour {
 
 	private float recordTime = 0;
 
+	private string timeStamp;
+
 	List<AttentionSignal> signalList;
 
 	void Awake()	
 	{		
 		controlData = GameObject.FindGameObjectWithTag ("MainCamera").GetComponent<DisplayData> ();
 		graphData = graphObject.GetComponent<window_graph> ();
+		timeStamp = System.DateTime.Now.ToString("HH_mm_ss__dd_MMMM_yyyy");
+		Debug.Log (timeStamp);
 	}
 
 	public void soundSlider_change(float value)
@@ -77,13 +81,15 @@ public class SoundHandler : MonoBehaviour {
 		}
 
 		if (GUILayout.Button ("Save File")) {
-			SavWav.Save ("audioLog", audioSource.clip);
+			SavWav.Save (timeStamp, audioSource.clip);
 			signalList = controlData.signalRecord;
 
 			for (int i = 0; i < signalList.Count; i++)
 			{
-				addCSVLog (signalList [i].time, signalList [i].attention, signalList [i].signal, "CSVAtt.txt");
+				addCSVLog (signalList [i].time, signalList [i].attention, signalList [i].signal, timeStamp+".txt");
 			}
+
+			Debug.Log ("Saved! Log files names: " + timeStamp);
 		}
 
 
