@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.IO;
+using AttentionSignalHeader;
 
 public class SoundHandler : MonoBehaviour {
 
@@ -29,6 +30,8 @@ public class SoundHandler : MonoBehaviour {
 	private bool isRecording = false;
 
 	private float recordTime = 0;
+
+	List<AttentionSignal> signalList;
 
 	void Awake()	
 	{		
@@ -75,7 +78,14 @@ public class SoundHandler : MonoBehaviour {
 
 		if (GUILayout.Button ("Save File")) {
 			SavWav.Save ("audioLog", audioSource.clip);
+			signalList = controlData.signalRecord;
+
+			for (int i = 0; i < signalList.Count; i++)
+			{
+				addCSVLog (signalList [i].time, signalList [i].attention, signalList [i].signal, "CSVAtt.txt");
+			}
 		}
+
 
 
 		if (GUILayout.Button ("Play")) {
@@ -106,4 +116,20 @@ public class SoundHandler : MonoBehaviour {
 
 
 
+	public static void addCSVLog(float time, int attention, int signal, string filepath)
+	{
+		try
+		{
+			using (System.IO.StreamWriter file = new System.IO.StreamWriter(@filepath, true))
+			{
+				file.WriteLine(time.ToString() + "," + attention.ToString() + "," + signal.ToString());
+			}
+		}
+
+		catch(Exception ex)
+		{
+			new ApplicationException ("Failed to registed csv file, error: ", ex);
+		}
+
+	}
 }

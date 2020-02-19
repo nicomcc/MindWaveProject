@@ -2,6 +2,11 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using AttentionSignalHeader;
+//using CsvInsertion;
+using System;
+//using System.IO;
+//using System.Linq;
+//using System.Text;
 
 public class DisplayData : MonoBehaviour
 {
@@ -50,7 +55,6 @@ public class DisplayData : MonoBehaviour
 		controller.UpdateMeditationEvent += OnUpdateMeditation;
 		
 		controller.UpdateDeltaEvent += OnUpdateDelta;
-		
     }
 
 	void SetRandomSkybox()
@@ -110,6 +114,10 @@ public class DisplayData : MonoBehaviour
 			indexSignalIcons = 1;
 			//connectStart = false;
         }
+
+		if (GUILayout.Button ("Log CSV")) 
+		{
+		}
 
 		/*if (GUILayout.Button("Data Acquisition"))
 		{			
@@ -183,7 +191,7 @@ public class DisplayData : MonoBehaviour
 			}
 				
 		}
-
-
     }
+
+
 }
